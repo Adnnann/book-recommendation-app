@@ -19,7 +19,7 @@ const Book = ({handleOpen, image, title, author}) => {
       <Card  className={classes.custom} >
         <CardMedia
         style={{width:"60%", margin:"0 auto", marginTop:"10%"}}
-        height={200}
+        height={180}
           component="img"
           image= {image}
           alt="books"
@@ -30,15 +30,15 @@ const Book = ({handleOpen, image, title, author}) => {
            </Typography> 
       </CardContent> 
 
-      <CardContent style={{borderStyle:"none"}}>  
+      <CardContent style={{borderStyle:"none", marginBottom:"0"}}>  
          <Typography gutterBottom variant='h10' component="div" padding={0} margin={0} textAlign={'center'} > 
              Author/s: {author}
            </Typography> 
       </CardContent> 
 
-      <CardContent style={{borderStyle:"none"}}>  
+      <CardContent style={{borderStyle:"none", marginTop:"0"}}>  
         <Typography gutterBottom variant='h10' component="div" padding={0} marginBottom={0} textAlign={'center'}  > 
-           <Button variant="outlined" style={{width:"100%", marginBottom:"0"}} onClick={handleOpen}>
+           <Button variant="outlined" style={{width:"100%", marginBottom:"0", marginTop:'0'}} onClick={handleOpen}>
             Details
           </Button>
         </Typography> 
