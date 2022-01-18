@@ -10,6 +10,7 @@ const useStyles = makeStyles({
       borderStyle:"solid",
     boxShadow: "none",
     borderColor:"lightgray",
+    height:"420px"
   }
 });
 const Book = ({handleOpen, image, title, author}) => {
@@ -24,8 +25,8 @@ const Book = ({handleOpen, image, title, author}) => {
           alt="books"
         />
         <CardContent style={{borderStyle:"none", paddingBottom:"0px"}}>  
-             <Typography gutterBottom variant='h10' component="div" padding={0} margin={0} textAlign={'center'} > 
-             {title} 
+             <Typography gutterBottom variant='h10' component="div" padding={0} margin={0} textAlign={'center'}> 
+            <strong>{title} </strong> 
            </Typography> 
       </CardContent> 
 
@@ -36,7 +37,7 @@ const Book = ({handleOpen, image, title, author}) => {
       </CardContent> 
 
       <CardContent style={{borderStyle:"none"}}>  
-        <Typography gutterBottom variant='h10' component="div" padding={0} margin={0} textAlign={'center'}  > 
+        <Typography gutterBottom variant='h10' component="div" padding={0} marginBottom={0} textAlign={'center'}  > 
            <Button variant="outlined" style={{width:"100%", marginBottom:"0"}} onClick={handleOpen}>
             Details
           </Button>
