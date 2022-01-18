@@ -13,11 +13,13 @@ const Header = ({handleOpenRecommended}) => {
   const dispatch = useDispatch()
   const getRecommendedBook = () => {
       const query = document.getElementById('bookSelector').value
-      const lettersAndNumbers = /^[0-9a-zA-Z]+$/
+      const lettersAndNumbers = /^[A-Za-z0-9 _]*[A-Za-z]+[A-Za-z0-9 _]*$/
       if(query.match(lettersAndNumbers)){
         dispatch(fetchAsyncBooks(query))
+        document.getElementById('bookSelector').value = ""
       }else{
         alert('Only letters and numbers are allowed')
+        document.getElementById('bookSelector').value = ""
       }
     }
 

@@ -12,6 +12,8 @@ const BooksList = () => {
 
   const books = useSelector(getAllBooks)
 
+console.log(books)
+
     const [open, setOpen] = useState(false);
     const [openRecommended, setOpenRecommended] = useState(false);
     const [bookDetails, setBookDetails] = useState({
@@ -31,6 +33,7 @@ const BooksList = () => {
     })
 
     const handleOpen = (i) => {
+      console.log(books)
         setOpen(true);
         setBookDetails({
           publisher: books.items[i].volumeInfo.publisher,
@@ -46,6 +49,7 @@ const BooksList = () => {
         setOpen(false);
       };
       const handleOpenRecommended = () => {
+        
         setOpenRecommended(true);
 
         setRecommendedBook({
@@ -63,7 +67,7 @@ const BooksList = () => {
           }))[0].volumeInfo.pageCount,
           bookURL: Array.from(Object.values(books)[0].filter(item=>item.volumeInfo.averageRating === Math.max(item.volumeInfo.averageRating)).sort(function(a,b){
             return b.volumeInfo.averageRating - a.volumeInfo.averageRating
-          }))[0].volumeInfo.canonicalVolumeLink
+          }))[0].volumeInfo.previewLink
         })
 
       };
@@ -87,7 +91,7 @@ const BooksList = () => {
       >
       {Object.values(books).length > 0 ?
          Object.keys(books).length !== 0 ?
-            books.items.map((item, index)=>{
+       books.items.map((item, index)=>{
                 return (
                   <Grid item xs={12} sm={4} md={4} xl={3} lg={3} key={index}>
                    
@@ -97,13 +101,15 @@ const BooksList = () => {
                       handleOpen={()=>handleOpen(index)}
                       image={item.volumeInfo.imageLinks.thumbnail}
                       title={item.volumeInfo.title}
-                      author={item.volumeInfo.authors.map(item=>`${item} `)}
+                      author={item.volumeInfo.authors ? item.volumeInfo.authors.map(item=>`${item}; `) : 'N/A'}
                     />
 
                     </Item>
                   </Grid> 
                     ) 
-            }) : <Grid item xs={12} sm={12} md={12} xl={12} lg={12} justifyContent={'center'}>
+            }) 
+            
+            : <Grid item xs={12} sm={12} md={12} xl={12} lg={12} justifyContent={'center'}>
                    
                    <Item >
                    <p>Loading...</p>
@@ -111,23 +117,23 @@ const BooksList = () => {
                    </Item>
                  </Grid>
 
-                 :  <Grid item xs={12} sm={12} md={12} xl={12} lg={12} justifyContent={'center'}>
-                   
-                   <Item  >
-                   
-                   <h1 style={{textAlign:'center'}}>Books with requested search term do not exist. Please try another</h1>
-                   </Item>
-                 </Grid>
+            :  <Grid item xs={12} sm={12} md={12} xl={12} lg={12} justifyContent={'center'}>
+              
+              <Item  >
+              
+              <h2 style={{textAlign:'center'}}>Books with requested search term do not exist. Please try again</h2>
+              </Item>
+            </Grid>
             
         }
     
         <RecommendedBook openRecommended={openRecommended} 
         handleCloseRecommended={handleCloseRecommended} 
-        bookImage={recommendedBook.bookImage}
-        bookTitle={recommendedBook.bookTitle}
-        bookAuthor={recommendedBook.bookAuthor}
-        pageCount={recommendedBook.pageCount}
-        bookReadURL={recommendedBook.bookURL}
+        bookImage={ recommendedBook.bookTitle ? recommendedBook.bookImage : 'https://vinylxpress.com/wp-content/uploads/2017/11/NOT-AVAILABLE-STICKER.jpg'}
+        bookTitle={recommendedBook.bookTitle ? recommendedBook.bookTitle : 'N/A' }
+        bookAuthor={recommendedBook.bookAuthor ? recommendedBook.bookAuthor : 'N/A' }
+        pageCount={recommendedBook.pageCount ? recommendedBook.pageCount : 'N/A'}
+        bookReadURL={recommendedBook.bookURL ? recommendedBook.bookURL : 'N/A' }
         />
         <BookDetails open={open} handleClose={handleClose} 
         publisher={bookDetails.publisher ? bookDetails.publisher : 'N/A'} 
