@@ -7,9 +7,10 @@ import Item from '@mui/material/Grid';
 import { width } from '@mui/system';
 import { fetchAsyncBooks } from '../features/booksSlice';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 const Header = ({handleOpenRecommended}) => {
-
+const [error, setError] = useState(false)
   const dispatch = useDispatch()
   const getRecommendedBook = () => {
       const query = document.getElementById('bookSelector').value
@@ -17,9 +18,10 @@ const Header = ({handleOpenRecommended}) => {
       if(query.match(lettersAndNumbers)){
         dispatch(fetchAsyncBooks(query))
         document.getElementById('bookSelector').value = ""
+        setError(false)
       }else{
-        alert('Only letters and numbers are allowed')
         document.getElementById('bookSelector').value = ""
+        setError(true)
       }
     }
 
@@ -51,7 +53,7 @@ const Header = ({handleOpenRecommended}) => {
             <SearchIcon color='primary' style={{height:"50px",width:"100%",marginTop:'0'}} onClick={getRecommendedBook}/></Button>
           </Item>
         </Grid>
-      
+        <p style={{visibility:error ? "visible" : 'hidden', marginBottom:'0', marginTop:"0", color:"red", fontStyle:'italic', textAlign:'center'}}>Only letter and numbers are allowed!!!</p>
         <Grid item xs={11} sm={12} md={11} xl={11} lg={11}> 
           <Item> 
             <Button variant="outlined"  style={{height:"42px",width:"100%", marginBottom:"0.5%"}} onClick={handleOpenRecommended}>Recommended</Button>

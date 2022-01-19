@@ -99,8 +99,8 @@ console.log(books)
                     
                     <Book 
                       handleOpen={()=>handleOpen(index)}
-                      image={item.volumeInfo.imageLinks.thumbnail}
-                      title={item.volumeInfo.title}
+                      image={item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}
+                      title={item.volumeInfo.title ? item.volumeInfo.title : 'N/A'}
                       author={item.volumeInfo.authors ? item.volumeInfo.authors.map(item=>`${item}; `) : 'N/A'}
                     />
 
