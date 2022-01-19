@@ -53,7 +53,7 @@ const [error, setError] = useState(false)
             <SearchIcon color='primary' style={{height:"50px",width:"100%",marginTop:'0'}} onClick={getRecommendedBook}/></Button>
           </Item>
         </Grid>
-        <p style={{visibility:error ? "visible" : 'hidden', marginBottom:'0', marginTop:"0", color:"red", fontStyle:'italic', textAlign:'center'}}>Only letter and numbers are allowed!!!</p>
+        <p style={{visibility:error ? "visible" : 'hidden', marginBottom:'0', marginTop:"0", color:"red", fontStyle:'italic', textAlign:'center'}}>Only letters and numbers are allowed!!!</p>
         <Grid item xs={11} sm={12} md={11} xl={11} lg={11}> 
           <Item> 
             <Button variant="outlined"  style={{height:"42px",width:"100%", marginBottom:"0.5%"}} onClick={handleOpenRecommended}>Recommended</Button>
