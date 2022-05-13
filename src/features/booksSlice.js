@@ -6,7 +6,7 @@ const KEY = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY
 
 export const fetchAsyncBooks = createAsyncThunk('books/fetchAsyncBooks', async (q) =>{
   
-    const response = await booksApi.get(`volumes?q=${q}&key=AIzaSyAVxJOFAiPbLYM7c0PpAa3F2s2Om-6uOWE&fields=items(volumeInfo)`)
+    const response = await booksApi.get(`volumes?q=${q}&key=${KEY}&fields=items(volumeInfo)`)
     .catch(err=>console.log('err', err))
     return response.data
     })
